@@ -14,7 +14,7 @@ public class ApplicationManager {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         wd = new ChromeDriver(options);
-        wd.navigate().to("https://telranedu.web.app/");
+        wd.navigate().to("https://ilcarro.web.app/");
 
     }
 
