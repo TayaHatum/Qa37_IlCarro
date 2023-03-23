@@ -45,7 +45,9 @@ public class HelperUser extends HelperBase{
     }
 
     public void closeWindow() {
-        click(By.xpath("//button[text()='Ok']"));
+        if(isElementPresent(By.xpath("//button[text()='Ok']")))
+            click(By.xpath("//button[text()='Ok']"));
+
     }
 
     public boolean isLogged(){
@@ -54,5 +56,20 @@ public class HelperUser extends HelperBase{
 
     public void logout() {
         click(By.xpath("//a[text()=' Logout ']"));
+    }
+
+    public String getErrorText() {
+        String text =wd.findElement(By.cssSelector("div.error")).getText();
+        System.out.println(text);
+
+        return text;
+
+    }
+
+    public boolean isYallaButtonNotActive() {
+       boolean res =  isElementPresent(By.cssSelector("button[disabled]"));
+       WebElement element = wd.findElement(By.cssSelector("button[type='submit']"));
+       boolean result = element.isEnabled();
+       return res && !result;
     }
 }

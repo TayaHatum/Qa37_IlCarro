@@ -34,11 +34,25 @@ public class LoginTests extends TestBase{
     }
     @Test
     public void loginWrongEmail(){
-
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm("","Nnoa12345$");
+        app.getHelperUser().submitLogin();
+        Assert.assertEquals(app.getHelperUser().getErrorText(),"It'snot look like email");
+        Assert.assertTrue(app.getHelperUser().isYallaButtonNotActive());
     }
     @Test
     public void loginWrongPassword(){
-
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm("noa@gmail.com","Nnoa12");
+        app.getHelperUser().submitLogin();
+        Assert.assertEquals(app.getHelperUser().getMessage(),"\"Login or Password incorrect\"");
+    }
+    @Test
+    public void loginUnregistered(){
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm("luck@gmail.com","luck12345$");
+        app.getHelperUser().submitLogin();
+        Assert.assertEquals(app.getHelperUser().getMessage(),"\"Login or Password incorrect\"");
     }
     @AfterMethod
     public void postCondition(){
