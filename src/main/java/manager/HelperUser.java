@@ -3,6 +3,10 @@ package manager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HelperUser extends HelperBase{
     public HelperUser(WebDriver wd) {
@@ -33,11 +37,22 @@ public class HelperUser extends HelperBase{
 
         // wait
 
+        WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.cssSelector(".dialog-container"))));
+
        // pause(8000);
         return wd.findElement(By.cssSelector(".dialog-container>h2")).getText();
     }
 
     public void closeWindow() {
         click(By.xpath("//button[text()='Ok']"));
+    }
+
+    public boolean isLogged(){
+        return isElementPresent(By.xpath("//a[text()=' Logout ']"));
+    }
+
+    public void logout() {
+        click(By.xpath("//a[text()=' Logout ']"));
     }
 }
