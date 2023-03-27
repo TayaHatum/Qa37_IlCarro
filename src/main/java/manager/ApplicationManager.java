@@ -11,6 +11,7 @@ public class ApplicationManager {
 
     WebDriver wd;
     HelperUser helperUser;
+    HelperCar helperCar;
 
     public void init(){
 
@@ -21,6 +22,7 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wd.navigate().to("https://ilcarro.web.app/");
         helperUser =new HelperUser(wd);
+        helperCar = new HelperCar(wd);
 
     }
 
@@ -31,5 +33,9 @@ wd.quit();
 
     public HelperUser getHelperUser() {
         return helperUser;
+    }
+
+    public HelperCar getHelperCar() {
+        return helperCar;
     }
 }
