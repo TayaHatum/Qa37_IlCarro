@@ -30,23 +30,9 @@ public class HelperUser extends HelperBase{
     }
 
 
-    public void submit() {
-        click(By.cssSelector("button[type='submit']"));
-    }
 
-    public String getMessage(){
-//        WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
-//        String  text = element.getText();
-//        return text;
 
-        // wait
 
-        WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.cssSelector(".dialog-container"))));
-
-       // pause(8000);
-        return wd.findElement(By.cssSelector(".dialog-container>h2")).getText();
-    }
 
     public void closeWindow() {
         if(isElementPresent(By.xpath("//button[text()='Ok']")))
@@ -123,5 +109,6 @@ public class HelperUser extends HelperBase{
         fillLoginForm(user);
         submit();
         closeWindow();
+
     }
 }
