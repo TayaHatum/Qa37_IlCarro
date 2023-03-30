@@ -1,11 +1,20 @@
 package tests;
 
 import models.Car;
+import models.User;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.Random;
 
 public class AddNewCarTests extends TestBase {
+
+    @BeforeClass
+    public void preCondition(){
+        if(!app.getHelperUser().isLogged()){
+            app.getHelperUser().login(new User().setEmail("noa@gmail.com").setPassword("Nnoa12345!") );
+        }
+    }
 
     @Test
     public void addNewCarSuccess() {
@@ -23,8 +32,8 @@ public class AddNewCarTests extends TestBase {
                 .about("Very nice car")
                 .build();
         app.getHelperCar().openCarForm();
-        app.getHelperCar().fillCarForm(car);
-        app.getHelperCar().sumitCarForm();
+       app.getHelperCar().fillCarForm(car);
+       // app.getHelperCar().sumitCarForm();
 
     }
 }

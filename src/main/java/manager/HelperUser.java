@@ -99,19 +99,29 @@ public class HelperUser extends HelperBase{
 
 
     public void checkPolicyXY(){
-        Dimension size = wd.manage().window().getSize();
-        System.out.println("Wight screen -->" +size.getWidth());
+        if(!wd.findElement(By.id("terms-of-use")).isSelected()) {
+            Dimension size = wd.manage().window().getSize();
+            System.out.println("Wight screen -->" + size.getWidth());
 
-        WebElement label = wd.findElement(By.cssSelector("label[for='terms-of-use']"));
-        Dimension dimension = label.getSize();
+            WebElement label = wd.findElement(By.cssSelector("label[for='terms-of-use']"));
 
-        Rectangle rect = label.getRect();
-        int w = rect.getWidth();
+            Dimension dimension = label.getSize();
 
-        int xOffSet=-w/2;
+            Rectangle rect = label.getRect();
+            int w = rect.getWidth();
 
-        Actions actions =new Actions(wd);
+            int xOffSet = -w / 2;
 
-        actions.moveToElement(label,xOffSet,0).click().release().perform();
+            Actions actions = new Actions(wd);
+
+            actions.moveToElement(label, xOffSet, 0).click().release().perform();
+        }
+    }
+
+    public void login(User user) {
+        openLoginForm();
+        fillLoginForm(user);
+        submit();
+        closeWindow();
     }
 }
