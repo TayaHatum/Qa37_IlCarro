@@ -54,6 +54,12 @@ public class HelperBase {
 
 
     }
+    public boolean isYallaButtonNotActive() {
+        boolean res =  isElementPresent(By.cssSelector("button[disabled]"));
+        WebElement element = wd.findElement(By.cssSelector("button[type='submit']"));
+        boolean result = element.isEnabled();
+        return res && !result;
+    }
 
     public boolean isElementPresent(By locator) {
         return wd.findElements(locator).size() > 0;
@@ -67,7 +73,7 @@ public class HelperBase {
 //        WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
 //        String  text = element.getText();
 //        return text;
-
+// 1/10/2023 - 2/10/2023
         // wait
 
         WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));

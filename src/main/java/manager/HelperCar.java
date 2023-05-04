@@ -75,6 +75,7 @@ public class HelperCar extends HelperBase{
 
     private void typeCity(String city) {
         type(By.id("city"),city);
+        pause(500);
         click(By.cssSelector("div.pac-item"));
     }
 
@@ -160,5 +161,20 @@ public class HelperCar extends HelperBase{
     public void navigateByLogo() {
         click(By.cssSelector("a.logo"));
 
+    }
+
+    public void searchNotValidPeriod(String city, String dateFrom, String dateTo) {
+        typeCity(city);
+        clearTextBox(By.id("dates"));
+        type(By.id("dates"),dateFrom+" - "+dateTo);
+        click(By.cssSelector("div.cdk-overlay-backdrop"));
+        //wd.findElement(By.id("dates")).sendKeys(dateFrom+" - "+dateTo);
+    }
+
+    public boolean isErrorDisplayed(String message) {
+
+        String text = wd.findElement(By.cssSelector("div.ng-star-inserted")).getText();
+
+        return text.equals(message);
     }
 }
